@@ -1,5 +1,6 @@
 var maxDistance = 43
 var minAge = 20
+var distanceUnits = 'kilometers' // Can be kilometers or miles
 var autolike = false // Pause on profiles matching above params, or always swipe right
 var minSwipeSecs = 1 // Minimum secs to wait between swipes (to not seem like a bot)
 var maxSwipeSecsVariance = 2 // Max amount of random seconds to wait between swipes, so interval is not always the same and to seem like less of a bot :)
@@ -16,7 +17,7 @@ async function swipeLeft() {
 
   await new Promise(r => setTimeout(r, 500));
 
-  var distanceDiv = document.evaluate("//div[contains(text(),'kilometers away')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  var distanceDiv = document.evaluate("//div[contains(text(),'" + distanceUnits + " away')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
   var ageSpan = document.evaluate("//*[@itemprop='age']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
